@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import "./ListItem.css"
+import './App.css';
 class ListItem extends Component{
     constructor(props) {
         //props将父组件的属性值传递到子组件
@@ -7,11 +8,15 @@ class ListItem extends Component{
     }
 
     completeItem(content) {
-        this.props.completeItem(content)
+        this.props.completeItem(content);
     }
 
     deleteItem(content) {
-        this.props.deleteItem(content)
+        this.props.deleteItem(content);
+    }
+
+    updateItem(content) {
+        this.props.updateItem(content);
     }
     
 
@@ -19,13 +24,18 @@ class ListItem extends Component{
         //const item = this.props.item;
         const style1 = {
             textDecorationLine: 'none',
-            color: 'black'
+            /*color: 'black'*/
+            backgroundColor: '#DFFCB5',
+            color: '#2EB872',
         };
         const style2 = {
             textDecorationLine: 'line-through',
-            color: 'gray'
+            /*color: 'gray'*/
+            backgroundColor: '#FFFA9D',
+            color: '#FF9A3C',
         };
         //这里弃用了老师的css，因为下面return的结构大改了一下。
+
 
         
         return (
@@ -36,9 +46,10 @@ class ListItem extends Component{
                         <li className="listItem" key={element.content}  type='none'>
                             <input type="checkbox"
                                 checked={element.done === 1}
-                                onChange={this.completeItem.bind(this, element.content)} />
-                            <span style={ element.done === 0 ? style1 : style2 }>{element.content}</span>
-                            <button className="delete" onClick={this.deleteItem.bind(this, element.content)} >Delete</button>
+                                onChange={this.completeItem.bind(this, element.id)} />
+                            <span  style={ element.done === 0 ? style1 : style2 }>{element.id}{element.content}{element.updatedAt}</span>
+                            <button className="delete-btn" onClick={this.deleteItem.bind(this, element.id)} >Delete</button>
+                            <button className="update-btn" onClick={this.updateItem.bind(this, element.id)} >Update</button>
                         </li>
                     </ul>
                 )
