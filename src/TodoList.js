@@ -94,7 +94,7 @@ class TodoList extends Component{
         if (rel != null) {
             const TodoList = []//建一个新的
             this.state.todoList.forEach((element, index) => {
-                //根据id查找，如果一样，则将其done值设置为1.
+                //根据id查找，如果一样，则将其内容更新.
                 if (element.id === id) {
                     const item = this.state.todoList[index]
                     var d = new Date();
